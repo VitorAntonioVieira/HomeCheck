@@ -13,7 +13,7 @@ export default function Home({ navigation }) {
             </Pressable>
             <Pressable
                 style={styles.button}
-                onPress={() => navigation.navigate("MMC")}
+                onPress={() => navigation.navigate("IMC")}
             >
                 <Text style={styles.label}>IMC</Text>
             </Pressable>
@@ -49,5 +49,11 @@ const styles = StyleSheet.create({
     label: {
         color: 'white',
         fontSize: 20
-    }
+    },
+    goBack: {
+        color: '#22A2F2',
+        fontWeight: '700',
+        fontSize: 20,
+        marginBottom: 20
+    },
 });

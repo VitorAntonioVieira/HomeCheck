@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
 import styled, { keyframes } from "styled-components";
 import Home from "../screens/Home";
-import MMC from "../screens/MMC";
+import IMC from "../screens/IMC";
 import Login from "../screens/Login";
 import Lamp from "../screens/Lamp"
 
@@ -50,8 +50,8 @@ export default function StackNavigation ({ navigation }) {
                 component={Home}
             />
             <Stack.Screen
-                name="MMC"
-                component={MMC}
+                name="IMC"
+                component={IMC}
             />
             <Stack.Screen
                 name="Lâmpada"

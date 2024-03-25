@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet, Pressable, TextInput, Alert } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Pressable, TextInput, TouchableOpacity } from "react-native";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -9,7 +9,9 @@ const schema = yup.object({
     height: yup.number().min(2, "No mínimo 2 dígitos").positive().required("Informe sua altura")
 });
 
-export default function MMC({navigation}) {
+export default function IMC({ navigation }) {
+    const [imc, SetImc] = useState();
+
     const { control, handleSubmit, setValue, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
@@ -19,13 +21,18 @@ export default function MMC({navigation}) {
     })
 
     const calcIMC = (data) => {
-        var imc = data.weight / (data.height*data.height)
-        return(imc);
+        var calc = data.weight / (data.height * data.height)
+        SetImc(calc);
     }
 
     return (
         <View style={styles.l_container}>
-           <View style={styles.form_box}>
+            <View style={styles.form_box}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Home')}
+                >
+                    <Text style={styles.goBack}>Voltar Home</Text>
+                </TouchableOpacity>
                 <Controller
                     control={control}
                     name="weight"
@@ -34,13 +41,13 @@ export default function MMC({navigation}) {
                             onChangeText={onChange}
                             onBlur={onBlur}
                             value={value}
-                            style={[styles.formInput, {borderColor: errors.username ? 'red': '#22A2F2'}]}
+                            style={[styles.formInput, { borderColor: errors.username ? 'red' : '#22A2F2' }]}
                             placeholder='Digite seu peso'
                             placeholderTextColor='gray'
                         />
                     )}
                 />
-                {errors.username && <Text style={styles.error_label}>{errors.weight?.message}</Text>}
+                {errors.weight && <Text style={styles.error_label}>{errors.weight?.message}</Text>}
                 <Controller
                     control={control}
                     name="height"
@@ -49,13 +56,13 @@ export default function MMC({navigation}) {
                             onChangeText={onChange}
                             onBlur={onBlur}
                             value={value}
-                            style={[styles.formInput, {borderColor: errors.password ? 'red': '#22A2F2'}]}
+                            style={[styles.formInput, { borderColor: errors.password ? 'red' : '#22A2F2' }]}
                             placeholder='Digite sua altura'
                             placeholderTextColor='gray'
                         />
                     )}
                 />
-                {errors.password && <Text style={styles.error_label}>{errors.height?.message}</Text>}
+                {errors.height && <Text style={styles.error_label}>{errors.height?.message}</Text>}
                 <Pressable
                     style={styles.form_btn}
                     onPress={handleSubmit(calcIMC)}
@@ -63,7 +70,9 @@ export default function MMC({navigation}) {
                 >
                     <Text style={styles.btn_label}>Calcular IMC</Text>
                 </Pressable>
-                <Text>{calcIMC}</Text>
+                {imc && (
+                    <Text>{imc}</Text>
+                )}
             </View>
         </View>
     );
