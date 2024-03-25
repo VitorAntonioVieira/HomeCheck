@@ -71,7 +71,7 @@ export default function IMC({ navigation }) {
                     <Text style={styles.btn_label}>Calcular IMC</Text>
                 </Pressable>
                 {imc && (
-                    <Text>{imc}</Text>
+                    <Text>{imc.toFixed(2)}</Text>
                 )}
             </View>
         </View>
