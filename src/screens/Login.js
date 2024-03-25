@@ -20,7 +20,7 @@ export default function Login({ navigation }) {
     })
 
     const handleSignIn = async (data) => {
-        if (data.username === 'admin' && data.password === '12345') {
+        if (data.username === 'user' && data.password === '12345') {
             Alert.alert('Login bem sucedido.');
             navigation.navigate('Home');
             setValue('username', '');
