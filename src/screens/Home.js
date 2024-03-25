@@ -15,7 +15,7 @@ export default function Home({ navigation }) {
                 style={styles.button}
                 onPress={() => navigation.navigate("MMC")}
             >
-                <Text style={styles.label}>MMC</Text>
+                <Text style={styles.label}>IMC</Text>
             </Pressable>
             <Pressable
                 style={styles.button}

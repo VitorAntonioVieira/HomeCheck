@@ -24,7 +24,7 @@ export default function MMC({navigation}) {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={styles.l_container}>
            <View style={styles.form_box}>
                 <Controller
                     control={control}
@@ -52,7 +52,6 @@ export default function MMC({navigation}) {
                             style={[styles.formInput, {borderColor: errors.password ? 'red': '#22A2F2'}]}
                             placeholder='Digite sua altura'
                             placeholderTextColor='gray'
-                            secureTextEntry={true}
                         />
                     )}
                 />
@@ -64,32 +63,55 @@ export default function MMC({navigation}) {
                 >
                     <Text style={styles.btn_label}>Calcular IMC</Text>
                 </Pressable>
-                <Text>Seu IMC é {imc}</Text>
+                <Text>{calcIMC}</Text>
             </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    l_container: {
         flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'column',
+    },
+    title_box: {
+        justifyContent: 'flex-start',
         alignItems: 'center',
     },
     title: {
-        color: '#22A2F2'
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: '#22A2F2',
     },
-    btn: {
+    form_box: {
+        justifyContent: 'space-evenly',
+        height: 250,
+    },
+    formInput: {
+        width: 300,
+        height: 50,
+        borderWidth: 1.5,
+        borderColor: '#22A2F2',
+        borderRadius: 5,
+        padding: 10,
+    },
+    form_btn: {
         height: 50,
         width: 300,
         backgroundColor: '#22A2F2',
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30
     },
-    label:{
-        color: 'white',
-        fontSize: 20
+    btn_label: {
+        fontWeight: 'bold',
+        color: '#fff',
+    },
+    error_label: {
+        color: 'red',
+        fontSize: 12
     }
 });
