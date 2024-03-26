@@ -27,12 +27,13 @@ export default function IMC({ navigation }) {
 
     return (
         <View style={styles.l_container}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Home')}
+            >
+                <Text style={styles.goBack}>Voltar Home</Text>
+            </TouchableOpacity>
             <View style={styles.form_box}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('Home')}
-                >
-                    <Text style={styles.goBack}>Voltar Home</Text>
-                </TouchableOpacity>
+                <Text>Calcule Seu IMC</Text>
                 <Controller
                     control={control}
                     name="weight"
@@ -71,7 +72,7 @@ export default function IMC({ navigation }) {
                     <Text style={styles.btn_label}>Calcular IMC</Text>
                 </Pressable>
                 {imc && (
-                    <Text>{imc.toFixed(2)}</Text>
+                    <Text style={{fontSize: 18, fontWeight: '600'}}>Seu IMC é {imc.toFixed(2)}</Text>
                 )}
             </View>
         </View>
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
     },
     form_box: {
         justifyContent: 'space-evenly',
+        alignItems: 'center',
         height: 250,
     },
     formInput: {
@@ -122,5 +124,11 @@ const styles = StyleSheet.create({
     error_label: {
         color: 'red',
         fontSize: 12
-    }
+    },
+    goBack: {
+        color: '#22A2F2',
+        fontWeight: '700',
+        fontSize: 20,
+        marginBottom: 20
+    },
 });
